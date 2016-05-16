@@ -1,0 +1,39 @@
+body {
+    font-weight: 100;
+    font-family: 'Lato';
+    font-size: 1.5rem;
+}
+
+.container {
+    width: 1000px;
+    margin: 0 auto;
+}
+
+nav {
+    background-color: rgba(0,0,0,0.5);
+    margin: 0;
+}
+
+nav h1 {
+    color: white;
+    font-size: 2rem;
+}
+
+h1 span {
+    color: #52FDFF;
+}
+
+/*.button-large {
+    width: 25%;
+    height: 25%;
+    margin: auto;
+    text-decoration: none;
+    background-color: #6441A5;
+    font-size: 1.4rem;
+    color: white;
+    padding: 10px 25px;
+}
+
+.button-large:hover {
+    background-color: #3F2969;
+}*/
