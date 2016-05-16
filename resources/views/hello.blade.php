@@ -71,32 +71,23 @@ $info_de = json_decode($info);
                 display: table;
                 font-weight: 100;
                 font-family: 'Lato';
+                font-size: 1.5rem;
             }
 
             .container {
-                text-align: center;
-                display: table-cell;
-                vertical-align: middle;
-            }
-
-            .content {
-                text-align: center;
-                display: inline-block;
-            }
-
-            .title {
-                font-size: 96px;
+                width: 1000px;
+                margin: 0 auto;
             }
         </style>
     </head>
     <body>
-        <header>
+        <header class="container">
             <h1>Alert <span>Me<span></h1>
             <nav>
                 <a href="#">Logout</a>
             </nav>
         </header>
-        <section>
+        <section class="container">
             <article>
                 <a href="/follower">Follower Alert</a>
             </article>

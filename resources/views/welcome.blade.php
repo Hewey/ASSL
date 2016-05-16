@@ -4,7 +4,7 @@
         <title>Alert Me</title>
 
         <link href="https://fonts.googleapis.com/css?family=Lato:100" rel="stylesheet" type="text/css">
-        <link rel="stylesheet" type="text/css" href="/css/reset.css">
+        <link href="/css/reset.css" rel="stylesheet" type="text/css">
         <link href="/css/main.css" rel="stylesheet" type="text/css">
 
     </head>

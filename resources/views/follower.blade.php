@@ -10,6 +10,8 @@
         <style>
             body {
                 background-color: rgba(0,0,0,0);
+                font-weight: 100;
+                font-family: 'Lato';
             }
 
             .hidden {
@@ -17,6 +19,7 @@
             }
 
             .alert {
+                color: white;
                 position: absolute;
                 left: -100px;
                 width: 100px;
