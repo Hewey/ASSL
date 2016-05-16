@@ -91,7 +91,7 @@ $info_de = json_decode($info);
     </head>
     <body>
         <header>
-            <h1>Alert <span>Me<span></h1> blak
+            <h1>Alert <span>Me<span></h1>
             <nav>
                 <a href="#">Logout</a>
             </nav>
