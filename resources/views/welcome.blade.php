@@ -17,7 +17,6 @@
     </section>
     <section class="container">
         <a class="button-large" href="https://api.twitch.tv/kraken/oauth2/authorize?response_type=code&client_id=3r9kwgbszo5avv7uyrahv8upx5h90gp&redirect_uri=http://localhost:8000/login&scope=user_read">Login</a>
-        <a class="button-large" href="https://api.twitch.tv/kraken/oauth2/authorize?response_type=code&client_id=3r9kwgbszo5avv7uyrahv8upx5h90gp&redirect_uri=http://localhost:8000/login&scope=user_read">Auth Test</a>
     </section>
     </body>
 </html>
