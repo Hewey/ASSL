@@ -17,8 +17,14 @@ Route::get('/', function () {
 
 Route::get('/login', function () {
 	return view('hello');
-});
+}); 
 
 Route::get('/follower', function () {
 	return view('follower');
 });
+
+Route::get('/list', function () {
+	return view('list');
+});
+
+//Route::get('/login', 'TAuthControl@Tlogin');

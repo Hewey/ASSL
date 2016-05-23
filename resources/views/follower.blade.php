@@ -1,3 +1,15 @@
+<?php
+
+$bcolor = 'grey';
+$tcolor = 'white';
+if(isset($_GET['bcolor'])&&isset($_GET['tcolor'])){
+    $get_bcolor = $_GET['bcolor'];
+    $get_tcolor = $_GET['tcolor'];
+    $bcolor = '#'.$get_bcolor;
+    $tcolor = '#'.$get_tcolor;
+}
+?>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -6,8 +18,13 @@
         <script src="https://ttv-api.s3.amazonaws.com/twitch.min.js"></script>
 
         <link href="https://fonts.googleapis.com/css?family=Lato:100" rel="stylesheet" type="text/css">
+        <link href="/css/modal.css" rel="stylesheet" type="text/css">
 
         <style>
+            <?php
+            header("Content-type: text/css; charset: UTF-8");
+            ?>
+
             body {
                 background-color: rgba(0,0,0,0);
                 font-weight: 100;
@@ -19,14 +36,14 @@
             }
 
             .alert {
-                color: white;
+                color: <?php echo $tcolor; ?>;
                 position: absolute;
                 left: -100px;
                 width: 100px;
                 height: 50px;
                 padding-top: 25px;
                 text-align: center; 
-                background-color: grey;
+                background-color: <?php echo $bcolor; ?>;
                 -webkit-animation: slide 0.5s forwards;
                 -webkit-animation-delay: 2s;
                 animation: slide 0.5s forwards;
@@ -50,12 +67,27 @@
         </style>
     </head>
     <body>
+        <a id="open" href="#openModal">Edit</a>
+
+        <div id="openModal" class="modalDialog">
+            <div>
+                <a href="#close" title="Close" class="close">X</a>
+                <h2>Edit Your Alert!</h2>
+                <form action="/follower" method="get">
+                    <label>Text Color:</label><input type="text" name="tcolor"><span id="atn">*</span><br>
+                    <label>Background Color:</label><input type="text" name="bcolor"><span id="atn">*</span><br>
+                    <p id="atn">*: Please enter a Hex value for the color!</p>
+                    <input type="submit" value="Save">
+                </form>
+            </div>
+        </div>
         <div id="follower" class="hidden"></div>
         <script type="text/javascript">
             Twitch.init({clientId: '3r9kwgbszo5avv7uyrahv8upx5h90gp'}, function(error, status) {
                 // the sdk is now loaded
             });
             var newFollower = "";
+            var followerSound = new Audio('audio/Space_01.mp3');
             setInterval(function(){
                 Twitch.api({method: 'channels/admiralhewey/follows'}, function(error, status) {
                     if (error) {
@@ -66,6 +98,7 @@
                         var newFollow = String(followsList.follows[0].user.name);
                         if (newFollower !== newFollow) {
                             newFollower = newFollow;
+                            followerSound.play();
                             document.getElementById('follower').className="alert";
                             document.getElementById('follower').innerHTML=newFollower;
                             //setTimeout(function(){document.getElementById('follower').className="fade";},5000);

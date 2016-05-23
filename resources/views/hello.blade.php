@@ -43,11 +43,21 @@ $auth_param = array(
 
 $info = post_url_contents("https://api.twitch.tv/kraken/oauth2/token", $auth_param);
 
-$follows = get_url_contents("https://api.twitch.tv/kraken/channels/admiralhewey/follows");
+$info_de = json_decode($info, true);
 
-$followers = json_decode($follows);
+$token = $info_de['access_token'];
 
-$info_de = json_decode($info);
+if(is_null($token)) {
+    //do nothing
+}else{
+
+    $user = get_url_contents("https://api.twitch.tv/kraken?oauth_token=".$token);
+
+    $user_de = json_decode($user);
+
+    $user_name = $user_de->token->user_name;
+
+}
 
 ?>
 <!DOCTYPE html>
@@ -89,7 +99,9 @@ $info_de = json_decode($info);
         </header>
         <section class="container">
             <article>
+                <?php echo '<h1> Hello, '.$user_name.'</h1>' ?> 
                 <a href="/follower">Follower Alert</a>
+                <a href="/list">Follower List</a>
             </article>
         </section>
     </body>

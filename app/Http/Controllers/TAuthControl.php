@@ -1,0 +1,70 @@
+<?php
+
+namespace App\Http\Controllers;
+
+class TAuthControl extends Controller
+{
+    public function Tlogin() {
+
+    	function get_url_contents($url){
+		    $crl = curl_init();
+		    $timeout = 5;
+		    curl_setopt ($crl, CURLOPT_URL,$url);
+		    curl_setopt ($crl, CURLOPT_RETURNTRANSFER, 1);
+		    curl_setopt ($crl, CURLOPT_CONNECTTIMEOUT, $timeout);
+		    $ret = curl_exec($crl);
+		    curl_close($crl);
+		    return $ret;
+		}
+
+		function post_url_contents($url, $fields) {
+
+		    $fields_string = '';
+
+		    foreach($fields as $key=>$value) { $fields_string .= $key.'='.urlencode($value).'&'; }
+		    rtrim($fields_string, '&');
+
+		    $crl = curl_init();
+		    $timeout = 5;
+
+		    curl_setopt($crl, CURLOPT_URL,$url);
+		    curl_setopt($crl,CURLOPT_POST, count($fields));
+		    curl_setopt($crl,CURLOPT_POSTFIELDS, $fields_string);
+
+		    curl_setopt ($crl, CURLOPT_RETURNTRANSFER, 1);
+		    curl_setopt ($crl, CURLOPT_CONNECTTIMEOUT, $timeout);
+		    $ret = curl_exec($crl);
+		    curl_close($crl);
+		    return $ret;
+		}
+
+		$code = $_GET['code'];
+
+		$auth_param = array(
+		    'client_id'=>'3r9kwgbszo5avv7uyrahv8upx5h90gp',
+		    'client_secret'=>'nse5izypwupw3avkeok57s9d9lh5ghg',
+		    'grant_type'=>'authorization_code',
+		    'redirect_uri'=>'http://localhost:8000/login',
+		    'code'=>$code 
+		);
+
+		$info = post_url_contents("https://api.twitch.tv/kraken/oauth2/token", $auth_param);
+
+		$info_de = json_decode($info, true);
+
+		$token = $info_de['access_token'];
+
+		if(is_null($token)) {
+		    //do nothing
+		}else{
+
+		    $user = get_url_contents("https://api.twitch.tv/kraken?oauth_token=".$token);
+
+		    $user_de = json_decode($user);
+
+		    $user_name = $user_de->token->user_name;
+
+		    return view('hello')->with('username', $user_name);
+		}
+    }
+}
