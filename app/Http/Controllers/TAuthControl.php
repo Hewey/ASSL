@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use DB;
+
+use Redirect;
+
 class TAuthControl extends Controller
 {
     public function Tlogin() {
@@ -64,7 +68,7 @@ class TAuthControl extends Controller
 
 		    $user_name = $user_de->token->user_name;
 
-		    return view('hello')->with('username', $user_name);
+		    return Redirect::to('hello')->with('username', $user_name);
 		}
     }
 }
