@@ -15,7 +15,8 @@
                     <article>
                         <?php //echo '<h1> Hello, '.$user_name.'</h1>' ?> 
                         <a href="/follower">Follower Alert</a> |
-                        <a href="/list">Follower List</a>
+                        <a href="/list">Follower List</a> |
+                        <a href="/supporters">Support List</a>
                     </article>
                 </div>
             </div>

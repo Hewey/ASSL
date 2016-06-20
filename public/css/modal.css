@@ -11,7 +11,38 @@
 	border-radius: 5px;
 }
 
+#open_support {
+	position: absolute;
+	top: 0;
+	right: 0;
+	z-index: 1;
+	margin: 75px 25px;
+	padding: 10px 5px;
+	text-decoration: none;
+	background-color: #62E0FF;
+	color: white;
+	border-radius: 5px;
+}
+
+#updateSupport {
+	display: inline-block;
+	margin: 10px 0;
+	padding: 5px 5px;
+	text-decoration: none;
+	background-color: #62E0FF;
+	color: white;
+	border-radius: 5px;
+}
+
 #open:hover {
+	background-color: #2D6775;
+}
+
+#open_support:hover {
+	background-color: #2D6775;
+}
+
+#updateSupport:hover {
 	background-color: #2D6775;
 }
 

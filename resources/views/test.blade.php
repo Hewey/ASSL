@@ -1,6 +1,9 @@
 <?php 
 
-	$username = Session::get('username');
-	echo $username;
+	$userid = 7;
+	$id = 4;
+
+	$url = route('deletesupport', ['id' => $id]);
+	
 
 ?>

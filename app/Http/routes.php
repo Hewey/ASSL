@@ -45,6 +45,16 @@ Route::get('/letmein', function() {
 	return view('login');
 });
 
+Route::get('/supporters', function() {
+	return view('supporters');
+});	
+
+Route::post('/supporters', 'SupporterController@add');
+
+Route::post('/deletesupport', 'SupporterController@destroy');
+
+Route::post('/updatesupport', 'SupporterController@update');
+
 /*Route::post('/letmein', function() {
 	$cred = Input::only('username', 'password');
 	if(Auth::attempt($credentials)) {
@@ -54,7 +64,6 @@ Route::get('/letmein', function() {
 });*/
 
 //Route::post('/register', 'RegisterController@store');
-//Route::auth();
 
 
 Route::auth();
