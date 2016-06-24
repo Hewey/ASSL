@@ -29,9 +29,17 @@ Route::get('/follower', function () {
 	return view('follower');
 });
 
+Route::post('/follower', 'FollowerController@retrieve');
+
+Route::post('/followersettings', 'FollowerController@storesettings');
+
 Route::get('/list', function () {
 	return view('list');
 });
+
+Route::post('/list', 'FListController@retrieve');
+
+Route::post('/listsettings', 'FListController@store');
 
 Route::get('/register', function() {
 	return view('register');

@@ -28,7 +28,7 @@ $results = DB::select('select * from supporters where userid = ? order by amount
                                 <label>Supporter Name:</label><input type="text" name="name"><br>
                                 <label>Donation Amount:</label><input type="text" name="amount"><br>
                                 <input type="hidden" name="_token" id="csrf-token" value="{{ Session::token() }}" />
-                                <input type="submit" value="Add Supporter">
+                                <input class="btn btn-info" type="submit" value="Add Supporter">
                             </form>
                         </div>
                     </div>
@@ -43,7 +43,7 @@ $results = DB::select('select * from supporters where userid = ? order by amount
                                     <input type='hidden' name='id' value='{{$id}}'>
                                     <input type='hidden' name='userid' value='{{$userid}}'>
                                     <input type='hidden' name='_token' id='csrf-token' value='{{ Session::token() }}' />
-                                    <input type='submit' value='delete'>
+                                    <input class="btn btn-info"  type='submit' value='delete'>
                                 </form>
                                 <a id="updateSupport" href="#openModal{{$id}}">Update</a>
 
@@ -57,7 +57,7 @@ $results = DB::select('select * from supporters where userid = ? order by amount
                                             <input type='hidden' name='id' value='{{$id}}'>
                                             <input type='hidden' name='userid' value='{{$userid}}'>
                                             <input type="hidden" name="_token" id="csrf-token" value="{{ Session::token() }}" />
-                                            <input type="submit" value="Update Supporter">
+                                            <input class="btn btn-info" type="submit" value="Update Supporter">
                                         </form>
                                     </div>
                                 </div>

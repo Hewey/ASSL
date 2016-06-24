@@ -2,12 +2,20 @@
 
 $bcolor = 'grey';
 $tcolor = 'white';
-if(isset($_GET['bcolor'])&&isset($_GET['tcolor'])){
-    $get_bcolor = $_GET['bcolor'];
-    $get_tcolor = $_GET['tcolor'];
-    $bcolor = '#'.$get_bcolor;
-    $tcolor = '#'.$get_tcolor;
+
+$user = Auth::user();
+
+$userid = $user->id;
+
+$result = DB::select('select * from FollowerSettings where userid = ?', [$userid]);
+
+
+foreach ($result as $setting) {
+    $bcolor = '#'.$setting->bcolor;
+    $tcolor = '#'.$setting->tcolor;
 }
+$username = Session::get('username');
+
 ?>
 
 <!DOCTYPE html>
@@ -38,8 +46,8 @@ if(isset($_GET['bcolor'])&&isset($_GET['tcolor'])){
             .alert {
                 color: <?php echo $tcolor; ?>;
                 position: absolute;
-                left: -100px;
-                width: 100px;
+                left: -150px;
+                width: auto;
                 height: 50px;
                 padding-top: 25px;
                 text-align: center; 
@@ -73,9 +81,11 @@ if(isset($_GET['bcolor'])&&isset($_GET['tcolor'])){
             <div>
                 <a href="#close" title="Close" class="close">X</a>
                 <h2>Edit Your Alert!</h2>
-                <form action="/follower" method="get">
+                <form action="/followersettings" method="post">
                     <label>Text Color:</label><input type="text" name="tcolor"><span id="atn">*</span><br>
                     <label>Background Color:</label><input type="text" name="bcolor"><span id="atn">*</span><br>
+                    <input type="hidden" name="username" value='{{$username}}'>
+                    <input type="hidden" name="_token" id="csrf-token" value="{{ Session::token() }}" />
                     <p id="atn">*: Please enter a Hex value for the color!</p>
                     <input type="submit" value="Save">
                 </form>
@@ -89,7 +99,7 @@ if(isset($_GET['bcolor'])&&isset($_GET['tcolor'])){
             var newFollower = "";
             var followerSound = new Audio('audio/Space_01.mp3');
             setInterval(function(){
-                Twitch.api({method: 'channels/admiralhewey/follows'}, function(error, status) {
+                Twitch.api({method: 'channels/{{$username}}/follows'}, function(error, status) {
                     if (error) {
                         console.log(error)
                     } else {
